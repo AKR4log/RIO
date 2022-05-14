@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rio/page/connect/confirm_card.dart';
-import 'package:rio/service/component/icons.dart';
+import 'package:rio/service/api/method/comfirm.dart';
 
 class ComfirmPhone extends StatefulWidget {
-  const ComfirmPhone({
-    Key key,
-  }) : super(key: key);
+  final String numberPhone;
+  const ComfirmPhone({Key key, this.numberPhone}) : super(key: key);
 
   @override
   State<ComfirmPhone> createState() => _ComfirmPhoneState();
@@ -85,6 +83,7 @@ class _ComfirmPhoneState extends State<ComfirmPhone> {
                               fontSize: 18),
                           hintText: "Код...",
                           fillColor: Colors.white),
+                      keyboardType: TextInputType.number,
                     )),
                 Container(
                     width: 270,
@@ -108,10 +107,8 @@ class _ComfirmPhoneState extends State<ComfirmPhone> {
                             fontSize: 16,
                             color: Color.fromRGBO(75, 66, 0, 1)),
                       ),
-                      onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ComfirmCard())),
+                      onPressed: () => check_code(widget.numberPhone,
+                          controllerPhone.text.trim(), context),
                     )),
               ]),
             ),

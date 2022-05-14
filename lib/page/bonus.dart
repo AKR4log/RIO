@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:rio/page/bonus.dart';
-import 'package:rio/page/cat_gift.dart';
-import 'package:rio/page/description.dart';
+import 'package:intl/intl.dart';
 import 'package:rio/page/home.dart';
+import 'package:rio/page/qr_code.dart';
+import 'package:rio/page/ruble.dart';
+import 'package:rio/service/api/method/get/get_bonus.dart';
 import 'package:rio/service/api/method/get/get_data_user.dart';
 import 'package:rio/service/component/bottom_bar.dart';
 
-class Ruble extends StatefulWidget {
-  const Ruble({Key key}) : super(key: key);
+class Bonus extends StatefulWidget {
+  const Bonus({Key key}) : super(key: key);
 
   @override
-  State<Ruble> createState() => _RubleState();
+  State<Bonus> createState() => _BonusState();
 }
 
-class _RubleState extends State<Ruble> {
+class _BonusState extends State<Bonus> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,19 +34,44 @@ class _RubleState extends State<Ruble> {
             alignment: Alignment.topCenter,
             child: Container(
               width: 315,
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
               margin: const EdgeInsets.only(top: 50),
               height: 603,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(22), color: Colors.white),
               child: Column(children: [
                 Container(
-                    width: double.infinity,
-                    margin: const EdgeInsets.only(top: 38, bottom: 38),
-                    child: Image.asset('assets/img/logo.jpg',
-                        height: 59, width: 159)),
+                  margin: const EdgeInsets.only(bottom: 16),
+                  width: double.infinity,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Ruble())),
+                        child: Container(
+                          width: 50,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: const Color.fromRGBO(233, 233, 233, 1)),
+                          height: 50,
+                          child: const Center(
+                              child: Icon(
+                            Icons.close_rounded,
+                            size: 28,
+                            color: Color.fromRGBO(158, 158, 158, 1),
+                          )),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
                 Container(
                   width: 273,
                   height: 156,
+                  margin: const EdgeInsets.only(bottom: 15),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(22),
                       color: const Color.fromRGBO(245, 245, 245, 1)),
@@ -81,22 +107,87 @@ class _RubleState extends State<Ruble> {
                           }
                         },
                       ),
-                      Container(
-                        child: const Text(
-                          'баллов на карте',
-                          style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black),
-                        ),
+                      const Text(
+                        'баллов на карте',
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black),
                       ),
                     ],
+                  ),
+                ),
+                SizedBox(
+                  height: 200,
+                  child: FutureBuilder<dynamic>(
+                    future: gets_bonus_user("0"),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Container();
+                      }
+
+                      return ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: snapshot.data['data'].length,
+                        itemBuilder: (BuildContext c, int i) {
+                          var item = snapshot.data['data'][i];
+                          return Container(
+                            width: double.infinity,
+                            margin: const EdgeInsets.symmetric(vertical: 5),
+                            padding: const EdgeInsets.symmetric(horizontal: 21),
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        width: 40,
+                                        margin: EdgeInsets.only(right: 10),
+                                        height: 40,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(50),
+                                            color: const Color.fromRGBO(
+                                                166, 215, 158, 1)),
+                                        child: const Center(
+                                            child: Icon(
+                                          Icons.add_rounded,
+                                          color: Colors.white,
+                                          size: 32,
+                                        )),
+                                      ),
+                                      Text(
+                                        item['points'].toString(),
+                                        style: const TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    item['date'].toString().substring(0, 10),
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        color: Color.fromRGBO(161, 161, 161, 1),
+                                        fontWeight: FontWeight.w600),
+                                  )
+                                ]),
+                          );
+                        },
+                      );
+                    },
                   ),
                 ),
                 Container(
                     width: 270,
                     height: 62,
-                    margin: const EdgeInsets.only(top: 73, bottom: 8),
+                    margin: const EdgeInsets.only(top: 26, bottom: 8),
                     child: TextButton(
                       style: ButtonStyle(
                         shape:
@@ -109,7 +200,7 @@ class _RubleState extends State<Ruble> {
                         padding: MaterialStateProperty.all(EdgeInsets.zero),
                       ),
                       child: const Text(
-                        'ОПИСАНИЕ АКЦИИ',
+                        'СКАНИРОВАТЬ ЧЕК',
                         style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 16,
@@ -118,61 +209,7 @@ class _RubleState extends State<Ruble> {
                       onPressed: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Description())),
-                    )),
-                Container(
-                    width: 270,
-                    height: 62,
-                    margin: const EdgeInsets.only(bottom: 8),
-                    child: TextButton(
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(31),
-                        )),
-                        backgroundColor: MaterialStateProperty.all(
-                            const Color.fromRGBO(255, 240, 0, 1)),
-                        padding: MaterialStateProperty.all(EdgeInsets.zero),
-                      ),
-                      child: const Text(
-                        'БОНУСНЫЕ БАЛЛЫ',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Color.fromRGBO(75, 66, 0, 1)),
-                      ),
-                      onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Bonus())),
-                    )),
-                Container(
-                    width: 270,
-                    height: 62,
-                    margin: const EdgeInsets.only(bottom: 25),
-                    child: TextButton(
-                      style: ButtonStyle(
-                        shape:
-                            MaterialStateProperty.all<RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(31),
-                        )),
-                        backgroundColor: MaterialStateProperty.all(
-                            const Color.fromRGBO(255, 240, 0, 1)),
-                        padding: MaterialStateProperty.all(EdgeInsets.zero),
-                      ),
-                      child: const Text(
-                        'КАТАЛОГ ПОДАРКОВ',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16,
-                            color: Color.fromRGBO(75, 66, 0, 1)),
-                      ),
-                      onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CatGift())),
+                              builder: (context) => const QrCode())),
                     )),
               ]),
             ),

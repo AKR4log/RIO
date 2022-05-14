@@ -7,35 +7,29 @@ import 'package:rio/service/component/database.dart';
 import 'package:rio/service/component/local_data.dart';
 
 /// Request for one category of gift
-get_catalogy_gift_user(String id) async {
+Future get_catalogy_gift_user(String id) async {
   final token = getToken();
   final res = await http.get(
-      api_link_get_catalogy_gift.replace(queryParameters: {
-        "id": id,
-      }),
+      api_link_get_catalogy_gift.replace(queryParameters: {"id": id}),
       headers: {
         'Accept': 'application/json',
         'Authorization': 'Bearer $token'
       });
   if (res.statusCode == 200) {
-    var json = jsonDecode(res.body);
-    print(json);
+    return jsonDecode(res.body);
   }
 }
 
 /// Request for all categories of gifts
-gets_catalogy_gift_user(int page) async {
-  final token = getToken();
+Future<dynamic> gets_catalogy_gift_user(String page) async {
+  final token = await getToken();
   final res = await http.get(
-      api_link_get_catalogy_gift.replace(queryParameters: {
-        "page": page,
-      }),
+      api_link_get_catalogy_gift.replace(queryParameters: {"page": page}),
       headers: {
         'Accept': 'application/json',
         'Authorization': 'Bearer $token'
       });
   if (res.statusCode == 200) {
-    var json = jsonDecode(res.body);
-    print(json);
+    return jsonDecode(res.body);
   }
 }

@@ -27,7 +27,9 @@ auth_user(String phone, BuildContext context) async {
       encoding: encoding);
   if (res.statusCode == 200) {
     var json = jsonDecode(res.body);
-    setToken(json['data']['token']).whenComplete(() => Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const ComfirmPhone())));
+    setToken(json['data']['token']).whenComplete(() => Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => ComfirmPhone(numberPhone: phone))));
   }
 }

@@ -24,8 +24,8 @@ get_bonus_user(String id) async {
 }
 
 /// Reward points request
-gets_bonus_user(int page) async {
-  final token = getToken();
+gets_bonus_user(String page) async {
+  final token = await getToken();
   final res = await http.get(
       api_link_get_bonus_user.replace(queryParameters: {
         "page": page,
@@ -35,7 +35,6 @@ gets_bonus_user(int page) async {
         'Authorization': 'Bearer $token'
       });
   if (res.statusCode == 200) {
-    var json = jsonDecode(res.body);
-    print(json);
+    return jsonDecode(res.body);
   }
 }
