@@ -49,7 +49,7 @@ class _ComfirmPhoneState extends State<ComfirmPhone> {
               child: Column(children: [
                 Container(
                     width: double.infinity,
-                    margin: const EdgeInsets.only(top: 51, bottom: 56),
+                    margin: const EdgeInsets.only(top: 51, bottom: 36),
                     child: Image.asset('assets/img/logo.jpg',
                         height: 59, width: 159)),
                 Container(
@@ -65,7 +65,7 @@ class _ComfirmPhoneState extends State<ComfirmPhone> {
                           color: Colors.black),
                     )),
                 Container(
-                    margin: const EdgeInsets.only(left: 23, bottom: 23),
+                    margin: const EdgeInsets.only(bottom: 23),
                     width: 270,
                     height: 56,
                     child: TextField(
@@ -81,14 +81,13 @@ class _ComfirmPhoneState extends State<ComfirmPhone> {
                               color: Color.fromRGBO(200, 200, 200, 1),
                               fontWeight: FontWeight.w600,
                               fontSize: 18),
-                          hintText: "Код...",
                           fillColor: Colors.white),
                       keyboardType: TextInputType.number,
                     )),
                 Container(
                     width: 270,
                     height: 62,
-                    margin: const EdgeInsets.only(left: 23, bottom: 11),
+                    margin: const EdgeInsets.only(bottom: 11),
                     child: TextButton(
                       style: ButtonStyle(
                         shape:

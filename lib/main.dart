@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rio/page/connect/login.dart';
+import 'package:provider/provider.dart';
+
+import 'utils/routes/router.dart';
+import 'utils/state/app_state.dart';
+import 'utils/state/feed_service_state.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,10 +14,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        theme: ThemeData(
-          fontFamily: 'Montserrat',
-        ),
-        home: const LoginPage());
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider<AppState>(create: (_) => AppState()),
+          ChangeNotifierProvider<FeedServiceState>(
+              create: (_) => FeedServiceState()),
+        ],
+        child: MaterialApp(
+          theme: ThemeData(
+            fontFamily: 'Montserrat',
+          ),
+          debugShowCheckedModeBanner: false,
+          routes: Routes.route(),
+          onGenerateRoute: (settings) => Routes.onGenerateRoute(settings),
+          initialRoute: "SplashPage",
+        ));
   }
 }

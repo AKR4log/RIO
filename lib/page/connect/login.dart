@@ -1,9 +1,7 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:rio/page/home.dart';
 import 'package:rio/service/api/method/auth.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
-import 'package:rio/service/component/database.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key key}) : super(key: key);
