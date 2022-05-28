@@ -47,10 +47,7 @@ class _BonusState extends State<Bonus> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       GestureDetector(
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Ruble())),
+                        onTap: () => Navigator.pushNamed(context, "/Ruble"),
                         child: Container(
                           width: 50,
                           decoration: BoxDecoration(
@@ -228,33 +225,32 @@ class _BonusState extends State<Bonus> {
                   Flexible(
                     flex: 1,
                     child: TextButton(
-                        onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Home())),
-                        child: bar('assets/img/bar-1.png', 'Карта', false)),
+                        onPressed: () =>
+                            Navigator.pushNamed(context, "/HomePage"),
+                        child: bar(Icons.credit_card, 'Карта', false)),
                   ),
                   Flexible(
                     flex: 2,
                     child: TextButton(
-                      onPressed: () {
-                        return null;
-                      },
-                      child: bar('assets/img/bar-2.png', 'РиоРублики', true),
+                      onPressed: () => Navigator.pushNamed(context, "/Ruble"),
+                      child:
+                          bar(Icons.card_giftcard_outlined, 'РиоРублики', true),
                     ),
                   ),
                   Flexible(
                     flex: 1,
                     child: TextButton(
                       onPressed: () {},
-                      child: bar('assets/img/bar-3.png', 'Акции', false),
+                      child:
+                          bar(Icons.favorite_border_outlined, 'Акции', false),
                     ),
                   ),
                   Flexible(
                     flex: 1,
                     child: TextButton(
                         onPressed: () {},
-                        child: bar('assets/img/bar-4.png', 'Товары', false)),
+                        child:
+                            bar(Icons.shopping_cart_outlined, 'Товары', false)),
                   ),
                 ],
               ),

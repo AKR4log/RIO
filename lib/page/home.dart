@@ -1,6 +1,8 @@
 // ignore_for_file: use_function_type_syntax_for_parameters
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+// import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:rio/page/ruble.dart';
 import 'package:rio/service/api/method/get/get_data_user.dart';
 import 'package:rio/service/component/bottom_bar.dart';
@@ -40,8 +42,12 @@ class _HomeState extends State<Home> {
                 Container(
                     width: double.infinity,
                     margin: const EdgeInsets.only(top: 38, bottom: 38),
-                    child: Image.asset('assets/img/logo.jpg',
-                        height: 59, width: 159)),
+                    child: SvgPicture.asset(
+                      'assets/img/logo.svg',
+                      height: 59,
+                      width: 159,
+                      fit: BoxFit.fitHeight,
+                    )),
                 Container(
                   width: 273,
                   margin: const EdgeInsets.only(bottom: 18),
@@ -94,13 +100,14 @@ class _HomeState extends State<Home> {
                 ),
                 Container(
                     width: 273,
-                    height: 175,
-                    margin: const EdgeInsets.only(top: 27),
+                    height: 210,
+                    margin: const EdgeInsets.only(top: 20),
                     child: const Text(
-                      'Карта лучшего друга\nпозволяет приобретать товары со скидкой 5% от розничной цены, также\nучаствовать во всех акциях Рио и покупать товары по\nоптовым ценам',
+                      'Карта лучшего друга позволяет приобретать товары со скидкой 5% от розничной цены, также участвовать во всех акциях Рио и покупать товары по оптовым ценам',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.black,
+                          height: 1.8,
                           fontSize: 16,
                           fontWeight: FontWeight.w600),
                     ))
@@ -122,30 +129,30 @@ class _HomeState extends State<Home> {
                     flex: 1,
                     child: TextButton(
                         onPressed: () {},
-                        child: bar('assets/img/bar-1.png', 'Карта', true)),
+                        child: bar(Icons.credit_card, 'Карта', true)),
                   ),
                   Flexible(
                     flex: 2,
                     child: TextButton(
-                      onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Ruble())),
-                      child: bar('assets/img/bar-2.png', 'РиоРублики', false),
+                      onPressed: () => Navigator.pushNamed(context, "/Ruble"),
+                      child: bar(
+                          Icons.card_giftcard_outlined, 'РиоРублики', false),
                     ),
                   ),
                   Flexible(
                     flex: 1,
                     child: TextButton(
                       onPressed: () {},
-                      child: bar('assets/img/bar-3.png', 'Акции', false),
+                      child:
+                          bar(Icons.favorite_border_outlined, 'Акции', false),
                     ),
                   ),
                   Flexible(
                     flex: 1,
                     child: TextButton(
                         onPressed: () {},
-                        child: bar('assets/img/bar-4.png', 'Товары', false)),
+                        child:
+                            bar(Icons.shopping_cart_outlined, 'Товары', false)),
                   ),
                 ],
               ),

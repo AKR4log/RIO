@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:rio/page/connect/login.dart';
 import 'package:rio/page/home.dart';
@@ -33,9 +34,16 @@ class _SplashPageState extends State<SplashPage> {
     return SizedBox(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
-      child: const Center(
-        child: Text('RIO',
-            style: TextStyle(fontSize: 72, fontWeight: FontWeight.bold)),
+      child: Center(
+        child: Container(
+            width: double.infinity,
+            margin: const EdgeInsets.only(top: 38, bottom: 38),
+            child: SvgPicture.asset(
+              'assets/img/logo.svg',
+              height: 75,
+              width: 159,
+              fit: BoxFit.fitHeight,
+            )),
       ),
     );
   }

@@ -1,6 +1,10 @@
 // ignore_for_file: missing_return
 
 import 'package:flutter/material.dart';
+import 'package:rio/page/bonus.dart';
+import 'package:rio/page/cat_gift.dart';
+import 'package:rio/page/description.dart';
+import 'package:rio/page/ruble.dart';
 
 import '../../page/connect/login.dart';
 import '../../page/home.dart';
@@ -21,11 +25,27 @@ class Routes {
     }
     switch (pathElements[1]) {
       case "HomePage":
-        return CustomRoute<bool>(
+        return SlideLeftRoute<bool>(
             builder: (BuildContext context) => const Home());
         break;
+      case "Bonus":
+        return SlideLeftRoute<bool>(
+            builder: (BuildContext context) => const Bonus());
+        break;
+      case "Description":
+        return SlideLeftRoute<bool>(
+            builder: (BuildContext context) => const Description());
+        break;
+      case "CatGift":
+        return SlideLeftRoute<bool>(
+            builder: (BuildContext context) => const CatGift());
+        break;
+      case "Ruble":
+        return SlideLeftRoute<bool>(
+            builder: (BuildContext context) => const Ruble());
+        break;
       case "LoginPage":
-        return CustomRoute<bool>(
+        return SlideLeftRoute<bool>(
             builder: (BuildContext context) => const LoginPage());
         break;
     }

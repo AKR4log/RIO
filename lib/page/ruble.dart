@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rio/page/bonus.dart';
 import 'package:rio/page/cat_gift.dart';
 import 'package:rio/page/description.dart';
@@ -41,8 +42,12 @@ class _RubleState extends State<Ruble> {
                 Container(
                     width: double.infinity,
                     margin: const EdgeInsets.only(top: 38, bottom: 38),
-                    child: Image.asset('assets/img/logo.jpg',
-                        height: 59, width: 159)),
+                    child: SvgPicture.asset(
+                      'assets/img/logo.svg',
+                      height: 59,
+                      width: 159,
+                      fit: BoxFit.fitHeight,
+                    )),
                 Container(
                   width: 273,
                   height: 156,
@@ -115,10 +120,8 @@ class _RubleState extends State<Ruble> {
                             fontSize: 16,
                             color: Color.fromRGBO(75, 66, 0, 1)),
                       ),
-                      onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Description())),
+                      onPressed: () =>
+                          Navigator.pushNamed(context, "/Description"),
                     )),
                 Container(
                     width: 270,
@@ -142,10 +145,7 @@ class _RubleState extends State<Ruble> {
                             fontSize: 16,
                             color: Color.fromRGBO(75, 66, 0, 1)),
                       ),
-                      onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Bonus())),
+                      onPressed: () => Navigator.pushNamed(context, "/Bonus"),
                     )),
                 Container(
                     width: 270,
@@ -169,10 +169,7 @@ class _RubleState extends State<Ruble> {
                             fontSize: 16,
                             color: Color.fromRGBO(75, 66, 0, 1)),
                       ),
-                      onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CatGift())),
+                      onPressed: () => Navigator.pushNamed(context, "/CatGift"),
                     )),
               ]),
             ),
@@ -191,11 +188,9 @@ class _RubleState extends State<Ruble> {
                   Flexible(
                     flex: 1,
                     child: TextButton(
-                        onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Home())),
-                        child: bar('assets/img/bar-1.png', 'Карта', false)),
+                        onPressed: () =>
+                            Navigator.pushNamed(context, "/HomePage"),
+                        child: bar(Icons.credit_card, 'Карта', false)),
                   ),
                   Flexible(
                     flex: 2,
@@ -203,21 +198,24 @@ class _RubleState extends State<Ruble> {
                       onPressed: () {
                         return null;
                       },
-                      child: bar('assets/img/bar-2.png', 'РиоРублики', true),
+                      child:
+                          bar(Icons.card_giftcard_outlined, 'РиоРублики', true),
                     ),
                   ),
                   Flexible(
                     flex: 1,
                     child: TextButton(
                       onPressed: () {},
-                      child: bar('assets/img/bar-3.png', 'Акции', false),
+                      child:
+                          bar(Icons.favorite_border_outlined, 'Акции', false),
                     ),
                   ),
                   Flexible(
                     flex: 1,
                     child: TextButton(
                         onPressed: () {},
-                        child: bar('assets/img/bar-4.png', 'Товары', false)),
+                        child:
+                            bar(Icons.shopping_cart_outlined, 'Товары', false)),
                   ),
                 ],
               ),
