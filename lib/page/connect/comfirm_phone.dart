@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rio/service/api/method/comfirm.dart';
 
 class ComfirmPhone extends StatefulWidget {
@@ -49,13 +50,17 @@ class _ComfirmPhoneState extends State<ComfirmPhone> {
               child: Column(children: [
                 Container(
                     width: double.infinity,
-                    margin: const EdgeInsets.only(top: 51, bottom: 36),
-                    child: Image.asset('assets/img/logo.jpg',
-                        height: 59, width: 159)),
+                    margin: const EdgeInsets.only(top: 38, bottom: 38),
+                    child: SvgPicture.asset(
+                      'assets/img/logo.svg',
+                      height: 75,
+                      width: 159,
+                      fit: BoxFit.fitHeight,
+                    )),
                 Container(
                     height: 24,
                     width: 260,
-                    margin: const EdgeInsets.only(left: 30, bottom: 16),
+                    margin: const EdgeInsets.only(bottom: 16),
                     child: const Text(
                       'Код для авторизации',
                       textAlign: TextAlign.center,

@@ -1,6 +1,8 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:rio/service/api/method/auth.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 class LoginPage extends StatefulWidget {
@@ -50,11 +52,14 @@ class _LoginPageState extends State<LoginPage> {
               child: Column(children: [
                 Container(
                     width: double.infinity,
-                    margin: const EdgeInsets.only(top: 51, bottom: 56),
-                    child: Image.asset('assets/img/logo.jpg',
-                        height: 59, width: 159)),
-                Container(
-                    margin: const EdgeInsets.only(left: 23, bottom: 23),
+                    margin: const EdgeInsets.only(top: 38, bottom: 38),
+                    child: SvgPicture.asset(
+                      'assets/img/logo.svg',
+                      height: 75,
+                      width: 159,
+                      fit: BoxFit.fitHeight,
+                    )),
+                SizedBox(
                     width: 270,
                     height: 56,
                     child: TextField(
@@ -95,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                     width: 270,
                     height: 62,
-                    margin: const EdgeInsets.only(left: 23, bottom: 11),
+                    margin: const EdgeInsets.only(bottom: 11),
                     child: TextButton(
                       style: ButtonStyle(
                         shape:
@@ -124,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                     height: 88,
                     width: 270,
-                    margin: const EdgeInsets.only(left: 23, bottom: 13),
+                    margin: const EdgeInsets.only(bottom: 13),
                     child: const Text(
                       'Нажимая на кнопку, я соглашаюсь с условиями Правила пользования\nторговой площадкой',
                       textAlign: TextAlign.center,

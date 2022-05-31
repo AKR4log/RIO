@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:rio/service/api/method/get/get_data_user.dart';
 
 import '../home.dart';
@@ -39,9 +41,13 @@ class _ComfirmCardState extends State<ComfirmCard> {
                   children: [
                     Container(
                         width: double.infinity,
-                        margin: const EdgeInsets.only(top: 51, bottom: 36),
-                        child: Image.asset('assets/img/logo.jpg',
-                            height: 59, width: 159)),
+                        margin: const EdgeInsets.only(top: 38, bottom: 38),
+                        child: SvgPicture.asset(
+                          'assets/img/logo.svg',
+                          height: 75,
+                          width: 159,
+                          fit: BoxFit.fitHeight,
+                        )),
                     Container(
                       width: 273,
                       margin: const EdgeInsets.only(bottom: 18),
