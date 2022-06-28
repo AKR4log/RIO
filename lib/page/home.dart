@@ -118,7 +118,7 @@ class _HomeState extends State<Home> {
             alignment: Alignment.bottomCenter,
             child: Container(
               width: 360,
-              height: 125,
+              height: 85,
               color: const Color.fromRGBO(245, 245, 245, 1),
               child: Flex(
                 direction: Axis.horizontal,

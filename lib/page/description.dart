@@ -76,7 +76,7 @@ class _DescriptionState extends State<Description> {
             alignment: Alignment.bottomCenter,
             child: Container(
               width: 360,
-              height: 125,
+              height: 85,
               color: const Color.fromRGBO(245, 245, 245, 1),
               child: Flex(
                 direction: Axis.horizontal,
